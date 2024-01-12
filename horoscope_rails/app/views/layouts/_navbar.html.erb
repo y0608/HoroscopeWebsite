@@ -1,0 +1,16 @@
+<nav class="bg-gray-800 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <%= link_to "Horodope", root_path, class: "text-white text-lg font-bold" %>
+      <div class="flex items-center space-x-4">
+        <%= link_to "Horoscopes", posts_path, class: "text-white" %>
+        <% if user_signed_in? %>
+          <%= link_to current_user.email, root_path , class: "text-white"%>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-white py-2 px-4" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "text-white" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "bg-white text-gray-800 py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  

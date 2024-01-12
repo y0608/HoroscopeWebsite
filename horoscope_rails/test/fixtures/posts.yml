@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+post1:
+  title: "Post 1"
+  body: "Post 1 body"
 
-one:
-  title: MyString
-  body: MyText
+post2:
+  title: "Post 2"
+  body: "Post 2 body"
 
-two:
-  title: MyString
-  body: MyText
+post3:
+  title: "Post 3"
+  body: "Post 3 body"
