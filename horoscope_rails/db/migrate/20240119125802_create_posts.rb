@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
     create_table :posts do |t|
       t.string :title
       t.text :body
+      t.references :horoscopist, null: false, foreign_key: { to_table: :users }
 
       t.timestamps
     end

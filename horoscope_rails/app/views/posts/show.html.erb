@@ -4,27 +4,29 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @post %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Title:</strong>
+      <%= @post.title %>
+    </p>
+  
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Body:</strong>
+      <%= @post.body %>
+    </p>
+  
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Horoscopist:</strong>
+      <%= @post.horoscopist.email %>
+    </p>
 
-    <%= link_to "Edit this post", edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <% if @post.horoscopist == current_user %>
+        <%= link_to "Edit this post", edit_post_path(@post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <hr class="mt-6">
+      <% end %>
     </div>
+
     <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
-    <br>
-
-    <% if @post.comments.any? %>
-      <h2>Comments</h2>
-      <ul>
-        <% @post.comments.each do |comment| %>
-          <li>
-            <strong><%= comment.user.username %>:</strong> <%= comment.body %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No comments yet.</p>
-    <% end %>
   </div>
 </div>

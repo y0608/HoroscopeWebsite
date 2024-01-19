@@ -1,5 +1,11 @@
-# comment1:
-#   id: 1
-#   body: "First comment"
-#   post: post1
-#   user: user1
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   body: MyText
+#   user: one
+#   post: one
+
+# two:
+#   body: MyText
+#   user: two
+#   post: two

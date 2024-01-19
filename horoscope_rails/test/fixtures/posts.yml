@@ -1,11 +1,9 @@
-post1:
-  title: "Post 1"
-  body: "Post 1 body"
+one:
+  title: MyString
+  body: MyText
+  horoscopist: :horoscopist
 
-post2:
-  title: "Post 2"
-  body: "Post 2 body"
-
-post3:
-  title: "Post 3"
-  body: "Post 3 body"
+two:
+  title: MyString
+  body: MyText
+  horoscopist: :horoscopist2
