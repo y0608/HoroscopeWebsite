@@ -12,3 +12,8 @@ viewer:
   role: <%= User.roles[:viewer] %>
   email: viewer@g.com
   encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
+
+admin:
+  role: <%= User.roles[:admin] %>
+  email: admin@g.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
