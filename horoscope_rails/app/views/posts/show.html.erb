@@ -28,5 +28,19 @@
     </div>
 
     <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  
+    <div class="mt-10">
+      <h2 class="text-2xl font-medium mb-5">Comments</h2>
+      <%= link_to "Add a comment", new_post_comment_path(@post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% @post.comments.each do |comment| %>
+        <div class="mb-5">
+          <p class="font-medium"><%= comment.body %></p>
+          <p class="text-sm text-gray-500">By <%= comment.user.email %></p>
+          <% if comment.user == current_user %>
+            <%= link_to "Edit this comment", edit_post_comment_path(@post, comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+            <%= button_to "Destroy this comment", post_comment_path(@post, comment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+          <% end %>
+        </div>
+      <% end %>
   </div>
 </div>
