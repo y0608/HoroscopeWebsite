@@ -1,45 +1,55 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class=" bg-yellow-100 w-screen h-screen p-5">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Title:</strong>
-      <%= @post.title %>
-    </p>
-  
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Body:</strong>
-      <%= @post.body %>
-    </p>
-  
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Horoscopist:</strong>
-      <%= @post.horoscopist.email %>
-    </p>
+    <div class="pl-4 font-sans pb-10">
+      <div class=" font-extrabold text-xl">
+        <%= @post.title %>
+      </div>
 
-    <div class="inline-block ml-2">
-      <% if @post.horoscopist == current_user || (current_user && current_user.admin?) %>
-        <%= link_to "Edit this post", edit_post_path(@post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-        <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-        <hr class="mt-6">
-      <% end %>
+      <div class="font-extralight text-sm">
+        By: <%= @post.horoscopist.email %>
+      </div>
+
+      <div class="pt-8 ">
+        <%= @post.body %>
+      </div>
     </div>
 
-    <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="">
+      <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
+
+    <div class="mt-2 items-center flex">
+      <% if current_user && (@post.horoscopist == current_user && current_user.horoscopist? || current_user.admin?) %>
+        <%= link_to "Edit this post", edit_post_path(@post), class: "ml-2 rounded-lg py-3 px-5 bg-blue-400 inline-block font-medium" %>
+        <%= button_to "Destroy this post", post_path(@post), method: :delete, class: "ml-2 rounded-lg py-3 px-5 bg-red-400 inline-block font-medium" %>
+      <% end %>
+    </div>
+    
+    <hr class="mt-6">
   
-    <div class="mt-10">
-      <h2 class="text-2xl font-medium mb-5">Comments</h2>
-      <%= link_to "Add a comment", new_post_comment_path(@post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="mt-10 pl-4 font-sans pb-10">
+      <div class="flex space-x-4 items-center mb-4">
+        <h2 class="text-2xl font-medium">Comments</h2>
+        <%= link_to "Add a comment", new_post_comment_path(@post), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </div>
+      
       <% @post.comments.each do |comment| %>
-        <div class="mb-5">
-          <p class="font-medium"><%= comment.body %></p>
-          <p class="text-sm text-gray-500">By <%= comment.user.email %></p>
-          <% if comment.user == current_user || (current_user && current_user.admin?)%>
-            <%= link_to "Edit this comment", edit_post_comment_path(@post, comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-            <%= button_to "Destroy this comment", post_comment_path(@post, comment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-          <% end %>
+        <div class="mt-2 items-center flex">
+            <div>
+              <p class="font-medium"><%= comment.body %></p>
+              <p class="text-sm text-gray-500">By <%= comment.user.email %></p>
+            </div>
+            
+            <div class="items-center flex">
+              <% if comment.user == current_user || (current_user && current_user.admin?)%>
+                <%= link_to "Edit this comment", edit_post_comment_path(@post, comment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+                <%= button_to "Destroy this comment", post_comment_path(@post, comment), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-red-500 inline-block font-medium" %>
+              <% end %>
+            </div>
         </div>
       <% end %>
   </div>
